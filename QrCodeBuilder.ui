@@ -438,7 +438,7 @@
          <string/>
         </property>
         <property name="placeholderText">
-         <string>URL LONGA</string>
+         <string>Cole sua URL aqui</string>
         </property>
        </widget>
       </item>
@@ -448,7 +448,7 @@
          <string/>
         </property>
         <property name="placeholderText">
-         <string>URL CURTA</string>
+         <string/>
         </property>
        </widget>
       </item>

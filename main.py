@@ -15,9 +15,6 @@ def CREATE_QRCODE(link):
     img = qrcode.make(link)
     img.save("qrcode.png")
 
-def GET_LOCAL_PATH(myPath):
-    return
-
 class QrCodeUI(QMainWindow): 
 
     def __init__(self, **kwargs):
@@ -56,13 +53,22 @@ class QrCodeUI(QMainWindow):
         if nomeArquivo:
             caminho = path.dirname(nomeArquivo)
             nome = nomeArquivo.removeprefix(caminho)
+           
             # Ler a foto do QRCODE
             with open("qrcode.png", "rb") as fotoQrcode:
                 dadosQrcode = fotoQrcode.read()
-            
             # salvar a foto aonde o user escolheu
             with open(caminho+f"{nome}.png", "wb") as foto:
                 foto.write(dadosQrcode)
+            self.reset()        
+
+    def reset(self):
+        self.btnSalvar.setEnabled(False)
+        self.urlShort.setText("")
+        self.url.setText("")
+        self.img.clear()
+        #- Limpa a imagem.  self.img.setPixmap(QPixmap())
+        self.showMessage("Sucesso", "Imagem salva com sucesso!", "gatinhoJoia.jpg")
 
     def showMessage(self, title, message, icon):
         notification = Notify()
