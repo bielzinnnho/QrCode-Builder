@@ -6,6 +6,8 @@ from pyshorteners import Shortener
 from notifypy import Notify
 from os import path
 import qrcode
+import sys
+
 
 def CREATE_SHORT_URL(url):
     link = Shortener()
@@ -15,11 +17,15 @@ def CREATE_QRCODE(link):
     img = qrcode.make(link)
     img.save("qrcode.png")
 
+def loadFile(file):
+    base_path = getattr(sys, "_MEIPASS", path.dirname(path.abspath(__file__)))
+    return path.join(base_path, file)
+
 class QrCodeUI(QMainWindow): 
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        loadUi(("QrCodeBuilder.ui"), self)
+        loadUi(loadFile("./QrCodeBuilder.ui"), self)
         self.show()
 
         # self.btnGerar.clicked.connect(self.texto)
