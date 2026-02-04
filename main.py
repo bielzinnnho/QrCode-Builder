@@ -2,7 +2,8 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QFileDialog
 from PyQt5.QtGui import QPixmap
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import pyqtSlot
-from pyshorteners import Shortener
+from pyshorteners import Shortener1
+import pyshorteners.tinyurl
 from notifypy import Notify
 from os import path
 import qrcode
@@ -10,7 +11,7 @@ import sys
 
 
 def CREATE_SHORT_URL(url):
-    link = Shortener()
+    link = Shortener1()
     return link.tinyurl.short(url)
 
 def CREATE_QRCODE(link):
@@ -80,7 +81,7 @@ class QrCodeUI(QMainWindow):
         notification = Notify()
         notification.title = title
         notification.message = message
-        notification.icon = icon
+        notification.icon = loadFile(icon)
         notification.send()
         QMessageBox.information(self, title, message)
 
